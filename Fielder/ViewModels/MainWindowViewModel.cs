@@ -86,7 +86,14 @@ namespace Fielder.ViewModels
             }
 
             _fields.Add(field);
-            await _fieldService.AddField(field);
+            try
+            {
+                await _fieldService.AddField(field);
+            }
+            catch
+            {
+                //log
+            }
 
             NewFieldName = string.Empty;
             NewFieldValue = string.Empty;
