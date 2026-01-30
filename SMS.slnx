@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/FirstTask/">
+    <Project Path="Cafe.Domain/Cafe.Domain.csproj" Id="e8bff986-d7c1-4cb4-bf74-4644c8a7454b" />
+    <Project Path="Cafe.Infrastructure/Cafe.Infrastructure.csproj" Id="26a6f782-8db8-40ba-8408-99569c1a1acb" />
+    <Project Path="CafeClient/CafeClient.csproj" />
+    <Project Path="CafeConsole/CafeConsole.csproj" Id="899c2460-147c-47bf-bc03-e3dcc739f8fe" />
+    <Project Path="SmsTestClient/SmsTestClient.csproj" Id="c0d47a10-748b-4fe9-a27a-0c4e1a323079" />
+  </Folder>
+  <Folder Name="/SecondTask/">
+    <Project Path="Fielder.Bussiness/Fielder.Bussiness.csproj" Id="a54573ae-ec3a-42dc-9e8b-f5dfa18e7e74" />
+    <Project Path="Fielder.Domain/Fielder.Domain.csproj" Id="7a3a9500-8659-4756-a2eb-e0e50b28de68" />
+    <Project Path="Fielder/Fielder.csproj" Id="94edef95-afd5-4705-a56c-3cc3d71c2ff4" />
+  </Folder>
+</Solution>
