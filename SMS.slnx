@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/FirstTask/">
+    <Project Path="Cafe.Business/Cafe.Business.csproj" Id="b16fd015-c3c2-4b63-b468-954a1e9dc765" />
     <Project Path="Cafe.Domain/Cafe.Domain.csproj" Id="e8bff986-d7c1-4cb4-bf74-4644c8a7454b" />
     <Project Path="Cafe.Infrastructure/Cafe.Infrastructure.csproj" Id="26a6f782-8db8-40ba-8408-99569c1a1acb" />
     <Project Path="CafeClient/CafeClient.csproj" />

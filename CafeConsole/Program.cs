@@ -1,9 +1,30 @@
 ﻿using Cafe.Domain.Models;
 using Cafe.Infrastructure.Repositories;
+using Cafe.Infrastructure.Repositories.Interfaces;
 using CafeClient;
+using CafeConsole.Settings;
+using Microsoft.Extensions.Configuration;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
-ClientCafe cafeClient = new ClientCafe("http://localhost:5000", "123", "12345");
-MenuItemRepository repository = new MenuItemRepository();
+var appSettingsPath = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
+
+var config = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
+
+var settings = config.GetSection("Settings").Get<Settings>();
+
+if (!settings.IsInitialized)
+{
+    SendSettingsNotInitializedMessage(appSettingsPath);
+    return;
+}
+
+ClientCafe cafeClient = new ClientCafe($"{settings.ServerIP}:{settings.ServerPort}", "123", "12345");
+IMenuItemRepository repository = new MenuItemRepository();
 
 int orderId = 1;
 
@@ -90,4 +111,20 @@ while (true)
     Console.ReadKey();
 
     await cafeClient.SendOrderAsync((orderId++).ToString(), orderItems);
+}
+
+static void SendSettingsNotInitializedMessage(string path)
+{
+    Console.WriteLine("Файл конфигурации 'appsettings.json' не настроен. Создан шаблон по умолчанию.");
+
+    Console.WriteLine("\nФайл 'appsettings.json' создан в папке приложения:");
+    Console.WriteLine($"   {path}");
+    Console.WriteLine("\nВАЖНО: Откройте файл и укажите корректные значения, затем установите IsInitialized в значение true:");
+    Console.WriteLine("   • ServerIP / ServerPort — адрес и порт API кафе");
+    Console.WriteLine("   • Database* — параметры подключения к БД (если используются)");
+    Console.WriteLine("   • CafeClient:ApiKey / ApiSecret — учётные данные API");
+    Console.WriteLine("\nРекомендация: Для продакшена используйте переменные окружения вместо хранения паролей в файле.");
+    Console.WriteLine("\nНажмите любую клавишу для завершения...");
+    Console.ReadKey();
+    return;
 }

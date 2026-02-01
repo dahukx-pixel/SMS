@@ -1,4 +1,4 @@
-﻿using CafeClient.Models;
+﻿using Cafe.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
